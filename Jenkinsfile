@@ -19,13 +19,19 @@ pipeline {
 
         }
 
-	stage('Checkout') {
+	// stage('Checkout') {
+    //         steps {
+    //             // Declarative Git checkout
+    //             git credentialsId: 'github-react-credentials', url: 'https://github.com/chauhankrishnaa/react-app-demo.git'
+    //         }
+    //     }
+        
+    stage('Checkout') {
             steps {
-                // Declarative Git checkout
-                git credentialsId: 'github-react-credentials', url: 'https://github.com/chauhankrishnaa/react-app-demo.git'
+                // Pull the code from GitHub
+                git branch: 'main', credentialsId: 'github-react-credentials', url: 'https://github.com/chauhankrishnaa/react-app-demo.git'
             }
         }
-        
         
         stage('Install dependencies and build the code') {
             steps {
