@@ -9,10 +9,20 @@ pipeline {
     }
 
     stages {
-        stage('Checkout') {
+
+  
+
+        stage("Cleanup the workspace"){
+            steps{
+                cleanWs()
+            }
+
+        }
+
+	stage('Checkout') {
             steps {
-                // Checkout code from GitHub repository
-                git 'https://github.com/chauhankrishnaa/react-app-demo.git'
+                // Declarative Git checkout
+                git credentialsId: 'github-react-credentials', url: 'https://github.com/chauhankrishnaa/react-app-demo.git'
             }
         }
         
@@ -27,21 +37,7 @@ pipeline {
             steps { 
                 // Build React.js application
                 sh 'npm run build'
-            }
-        }
-        
-         stage('Start application') {
-             steps {
-                 // Start React.js application
-                 sh 'npm start &'
-             }
-        }
-    }
-
-    post {
-        always {
-            // Clean up
-            sh 'killall node || true'
-        }
-    }
+            //repo
+    
+}
 }
