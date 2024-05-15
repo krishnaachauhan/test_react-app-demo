@@ -40,6 +40,11 @@ pipeline {
             //repo
             }   
          }
+         stage('Archive Artifact'){
+		    steps{
+		        archiveArtifacts artifacts:'target/*.war'
+		}
+	}
          stage('start') {
             steps { 
                 // Build React.js application
