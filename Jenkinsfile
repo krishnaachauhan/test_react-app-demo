@@ -33,7 +33,7 @@ pipeline {
                 sh 'npm install'
             }
         }
-         stage('Build the code') {
+         stage('Build the codee') {
             steps { 
                 // Build React.js application
                 sh 'npm run build'
